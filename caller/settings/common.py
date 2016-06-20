@@ -16,6 +16,9 @@ import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+BASE_DIR = os.path.abspath(os.path.join(BASE_DIR, os.pardir))
+
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -132,14 +135,16 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
-STATIC_ROOT = BASE_DIR + '/staticfiles'
-
 STATIC_URL = '/static/'
+
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static"),
-    os.path.join(BASE_DIR, "assets"),
-    os.path.join(BASE_DIR, "result")
+    os.path.join(BASE_DIR, "static")
+
 ]
+
+print STATICFILES_DIRS, BASE_DIR
+
+STATIC_ROOT = '' #BASE_DIR + '/static'
 
 # Messages settings for Bootstrap 3
 
