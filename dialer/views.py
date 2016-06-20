@@ -68,7 +68,10 @@ def get_token(request):
         capability.allow_client_incoming('customer')
 
     # Generate the capability token
-    token = capability.generate()
+    token = capability.generate(expires=3600)
+    
+    
+    
 
     return JsonResponse({'token': token})
 

@@ -55,6 +55,12 @@ $(document).ready(function() {
     });
     
     
+    setInterval("reload_page();",3500); 
+ 
+     //Reload page if  it is opened for too long time
+    function reload_page(){
+        window.location = location.href;
+    }
     
     
     
