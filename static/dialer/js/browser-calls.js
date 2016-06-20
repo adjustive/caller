@@ -34,7 +34,7 @@ Twilio.Device.error(function (error) {
 });
 
 /* Callback to determine if "support_agent" is available or not */
-Twilio.Device.presence(function(presenceEvent) {
+/*Twilio.Device.presence(function(presenceEvent) {
     if (presenceEvent.from === 'support_agent') {
         if (presenceEvent.available) {
             $("#support-unavailable").hide();
@@ -42,7 +42,7 @@ Twilio.Device.presence(function(presenceEvent) {
             $("#support-unavailable").show();
         }
     }
-});
+});*/
 
 /* Callback for when Twilio Client initiates a new connection */
 Twilio.Device.connect(function (connection) {
