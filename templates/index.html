@@ -19,26 +19,20 @@
             <div class="row">
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
-                  <div class="x_title">
-                    <h2>Make a call </h2>
-                    <ul class="nav navbar-right panel_toolbox">
-                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                      </li>
-                      
-                    </ul>
-                    <div class="clearfix"></div>
-                  </div>
+                  
                   <div class="x_content">
                     <br />
                     <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
                     
                     <div class=" col-md-offset-3 col-md-6">
                         <div class="form-group">
-                         <input type="text" name="phonenumber-box" class="phonenumber-box form-control input-lg">
+                        <br /> 
+                        <input type="text" name="phonenumber-box" class="phonenumber-box form-control input-lg">
                         </div>
                     </div>
                     
                     <div class=" col-md-offset-4 col-md-6">    
+                        <p>&nbsp;</p>
                         <button type="button" class="btn btn-primary btn-lg phonenumber-call">Call Number</button>
                         <button class="btn btn-lg btn-danger hangup-button" disabled onclick="hangUp()">Hang up</button>
                         
@@ -76,10 +70,11 @@
                       <thead>
                         <tr>
                           <th style="width: 20%">Date</th>
-                          <th>Number</th>
+                          <th>Person</th>
                           <th style="width: 20%">Direction</th>
                           <th>Status</th>
-                          <th style="width: 20%">Duration</th>
+                          <th >Duration</th>
+                          <th >Price(Cents)</th>
                           <th style="width: 20%">Add to dialer</th>
                         </tr>
                       </thead>
@@ -88,23 +83,17 @@
                         {% for call in call_list %}
                         
                         <tr>
-                          <td>  {{ call.date_created|date:"D d M Y" }} {{ call.date_created|time:"H:i" }}
-                          </td>
-                          <td>
-                            <a>Name</a>
-                            <br />
-                            <small>{{call.to_formatted}}</small>
-                          </td>
+                          <td>  {{ call.date_created|date:"D d M Y" }} {{ call.date_created|time:"H:i" }} </td>
+                          <td>  {% firstof call.to_formatted call.from_formatted  %}   </td>
                           <td>{{call.direction}}</td>
-                          
-                          <td>
-                            <span class="badge" >{{call.status}}</span>
-                          </td>
-                            <td>{{ call.duration|time:"i:s"}}</td>
+                          <td> <span class="label label-info" >{{call.status}}</span> </td>
+                          <td>{{ call.duration|time:"i:s"}}</td>
+                          <td>{{call.price}}</td>
                         
                           <td>
+                          {%if call.to_formatted %}
                             <a href="#"  class="btn btn-primary btn-xs add-to-dialer" data-content="{{call.to_formatted}}" ><i class="fa fa-folder"></i> Add to dialer </a>
-                            
+                          {% endif %}  
                           </td>
                         </tr>
         
@@ -126,57 +115,6 @@
             
             
             
-            <h2>Support Tickets</h2>
-
-    <p class="lead">
-      This is the list of most recent support tickets. Click the "Call customer" button to start a phone call from your browser.
-    </p>
-
-    <div class="row">
-
-      <div class="col-md-4 col-md-push-8">
-        <div class="panel panel-primary client-controls">
-          <div class="panel-heading">
-            <h3 class="panel-title">Make a call</h3>
-          </div>
-          <div class="panel-body">
-            <p><strong>Status</strong></p>
-            <div class="well well-sm" id="call-status">
-              Connecting to Twilio...
-            </div>
-
-            <button class="btn btn-lg btn-success answer-button" disabled>Answer call</button>
-            <button class="btn btn-lg btn-danger hangup-button" disabled onclick="hangUp()">Hang up</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-8 col-md-pull-4">
-        {% for ticket in support_tickets %}
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <h3 class="panel-title">Ticket #{{ ticket.id }} <small class="pull-right">{{ ticket.timestamp }}</small></h3>
-            </div>
-
-            <div class="panel-body">
-
-              <div class="pull-right">
-                <button onclick="callCustomer('{{ ticket.phone_number }}')" type="button" class="btn btn-primary btn-lg call-customer-button">
-                  <span class="glyphicon glyphicon-earphone" aria-hidden="true"></span>  Call customer
-                </button>
-              </div>
-
-              <p><strong>Name:</strong> {{ ticket.name }}</p>
-              <p><strong>Phone number:</strong> {{ ticket.phone_number.as_international }}</p>
-              <p><strong>Description:</strong></p>
-              {{ ticket.description|linebreaks }}
-
-            </div>
-          </div>
-        {% endfor %}
-      </div>
-
-    </div>
  
 
          
