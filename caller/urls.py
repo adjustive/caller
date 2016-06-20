@@ -15,8 +15,15 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
+from django.contrib.auth import views as auth_views
+
+#from dialer.views import SupportTicketCreate
 
 urlpatterns = [
     url(r'^dialer/', include('dialer.urls')),
+    
+    #url(r'^$', SupportTicketCreate.as_view(), name='home'),
+    #url(r'^support/', include('browser_calls.urls')),
+    
     url(r'^admin/', admin.site.urls),
 ]
