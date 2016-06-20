@@ -17,10 +17,10 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'not-so-secret'
+SECRET_KEY = 'iguod@&u&_(3f_d-z)r_2g)o=mjor_rbo)9)b&19$ih*txgnta'
 
 ALLOWED_HOSTS = []
 
@@ -55,12 +55,11 @@ DJANGO_APPS = (
 )
 
 THIRD_PARTY_APPS = (
-    'bootstrap3',
-    'django_forms_bootstrap'
+    
 )
 
 LOCAL_APPS = (
-    'browser_calls',
+    'dialer',
 )
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -76,7 +75,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.security.SecurityMiddleware',
 )
 
-ROOT_URLCONF = 'twilio_sample_project.urls'
+ROOT_URLCONF = 'caller.urls'
 
 TEMPLATES = [
     {
@@ -94,7 +93,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'twilio_sample_project.wsgi.application'
+WSGI_APPLICATION = 'caller.wsgi.application'
 
 
 # Database
@@ -103,12 +102,16 @@ WSGI_APPLICATION = 'twilio_sample_project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'browser_calls',
-        'USER': 'postgres',
+        'NAME': 'caller',
+        'USER': 'calluser',
         'PASSWORD': 'qq',
         'HOST': '127.0.0.1',
         'PORT': '5432',
-    }
+    },
+    #'default': {
+        #'ENGINE': 'django.db.backends.sqlite3',
+        #'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    #}
 }
 
 
@@ -132,6 +135,11 @@ USE_TZ = True
 STATIC_ROOT = BASE_DIR + '/staticfiles'
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),
+    os.path.join(BASE_DIR, "assets"),
+    os.path.join(BASE_DIR, "result")
+]
 
 # Messages settings for Bootstrap 3
 

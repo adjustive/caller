@@ -6,7 +6,7 @@ from django.db import models, migrations
 
 def create_sample_data(apps, schema_editor):
     """Prepopulate the app with some sample data"""
-    SupportTicket = apps.get_model('browser_calls', 'SupportTicket')
+    SupportTicket = apps.get_model('dialer', 'SupportTicket')
 
     SupportTicket.objects.create(
         name='Charles Holdsworth',
@@ -23,7 +23,7 @@ def create_sample_data(apps, schema_editor):
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('browser_calls', '0001_initial'),
+        ('dialer', '0001_initial'),
     ]
 
     operations = [
