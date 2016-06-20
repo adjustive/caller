@@ -37,7 +37,7 @@ def support_dashboard(request):
 
     context['support_tickets'] = SupportTicket.objects.order_by('-timestamp')
 
-    return render(request, 'browser_calls/support_dashboard.html', context)
+    return render(request, 'index.html', context)
 
 
 def get_token(request):
