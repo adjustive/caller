@@ -108,8 +108,8 @@
   margin-top: 10px; }
 
 .profile_pic {
-  width: 35%;
-  float: left; }
+
+  float: none; }
 
 .img-circle.profile_img {
   width: 70%;
@@ -329,7 +329,7 @@ body {
   color: #73879C;
   background: #2A3F54;
   font-family: "Helvetica Neue", Roboto, Arial, "Droid Sans", sans-serif;
-  font-size: 13px;
+  font-size: 16px;
   font-weight: 400;
   line-height: 1.471; }
 
@@ -594,7 +594,9 @@ a:hover, a:focus {
   background-color: transparent; }
 
 .top_search {
-  padding: 0; }
+  padding: 0; 
+  padding-top:  5px;
+  }
 
 .top_search .form-control {
   border-right: 0;
@@ -2497,7 +2499,6 @@ ul.social li {
   font-weight: 500;
   background-color: #f5f5f5;
   border: 1px solid #e7e7e7; }
-
 ul.widget_tally, ul.widget_tally li {
   width: 100%; }
 
@@ -3826,10 +3827,18 @@ ul.verticle_bars li {
 
 /** bootstrap-progressbar  **/
 /** PNotify **/
+
+.alert
+{
+  padding:  5px 10px; 
+}
+
 .alert-success {
   color: #ffffff;
   background-color: rgba(38, 185, 154, 0.88);
-  border-color: rgba(38, 185, 154, 0.88); }
+  border-color: rgba(38, 185, 154, 0.88); 
+  
+  }
 
 .alert-info {
   color: #E9EDEF;
