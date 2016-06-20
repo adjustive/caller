@@ -1,4 +1,5 @@
 /**
+
  * Twilio Client configuration for the browser-calls-django
  * example application.
  */
@@ -11,16 +12,52 @@ var hangUpButton = $(".hangup-button");
 var callCustomerButtons = $(".call-customer-button");
 
 /* Helper function to update the call status bar */
-function updateCallStatus(status) {
-    callStatus.text(status);
+function updateCallStatus(status, error) {
+    
+    if(b != undefined)
+    {
+        callStatus.html("<span class='label label-danger'>We are facing technical error. Please try again later.</span>");
+        return;
+    }
+    
+    
+    if(status == "Ready")
+    {
+        callStatus.html("<span class='label label-success'>We are connected.</span>");
+        return;
+    }
+        
+    
+    callStatus.html("<span class='label label-warning'>"+status+"</span>");    
+    
 }
 
 /* Get a Twilio Client token with an AJAX request */
 $(document).ready(function() {
+    
+    
     $.get("/dialer/token", {forPage: window.location.pathname}, function(data) {
         // Set up the Twilio Client Device with the token
         Twilio.Device.setup(data.token);
     });
+    
+    
+    $(".add-to-dialer").click(function() {
+   
+       $(".phonenumber-box").val($(this).attr("data-content"))
+  
+    });
+    
+    $(".phonenumber-call").click(function() {
+   
+      callCustomer( $(".phonenumber-box").val() )
+  
+    });
+    
+    
+    
+    
+    
 });
 
 /* Callback to let us know Twilio Client is ready */

@@ -6,15 +6,16 @@ from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, redirect
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import CreateView
-from twilio import twiml
-from twilio.util import TwilioCapability
-
-from .models import SupportTicket
-
 from django.template import RequestContext
 from django.shortcuts import render, render_to_response
 from django import forms
 from django.views.decorators.csrf import csrf_exempt
+
+from .models import SupportTicket
+
+from twilio.rest import TwilioRestClient
+from twilio import twiml
+from twilio.util import TwilioCapability
 
 
 
@@ -36,6 +37,13 @@ def support_dashboard(request):
     context = {}
 
     context['support_tickets'] = SupportTicket.objects.order_by('-timestamp')
+    
+    
+    client = TwilioRestClient(settings.TWILIO_ACCOUNT_SID , settings.TWILIO_AUTH_TOKEN)
+    context['call_list'] = client.calls.list()[:10]
+
+    print context['call_list'][:10]
+    
 
     return render(request, 'index.html', context)
 
