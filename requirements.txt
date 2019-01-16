@@ -1,7 +1,7 @@
 # Requirements for browser-calls-django
 
 # Django (1.8 is a long-term support release)
-Django==1.9.6
+Django==1.11.18
 
 # Third-party app dependencies
 #django-bootstrap3==6.2.2
